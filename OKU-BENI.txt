@@ -1,0 +1,107 @@
+\xEF\xBB\xBFYKS KOÇU — Aşama 3 + Yapay Zekâ Koçu
+
+İLK KURULUM (yalnızca bir kez)
+1. İndirdiğin "yks-kocu.zip" dosyasına sağ tıkla ve "Tümünü ayıkla" de.
+   (Zip'in içinden çalıştırma; mutlaka ayıkla.)
+2. Çıkan "yks-kocu" klasörünü kalıcı bir yere koy (örneğin Belgeler).
+3. Klasörün içindeki BASLAT.bat dosyasına çift tıkla. Uygulama Microsoft Edge'de açılır.
+   Google Chrome ile açmak istersen BASLAT-CHROME.bat dosyasını kullan.
+   - Windows "Bilgisayarınızı korudu" uyarısı çıkarsa: "Ek bilgi" > "Yine de çalıştır".
+4. İstersen BASLAT.bat veya BASLAT-CHROME.bat'a sağ tıkla > "Gönder" > "Masaüstü (kısayol oluştur)".
+
+EDGE VE CHROME'U BİRLİKTE KULLANMAK
+- Her tarayıcı verileri KENDİ içinde saklar. Edge'de girdiklerin Chrome'da görünmez, tersi de öyle.
+- Ana tarayıcı olarak birini seç ve hep onunla aç. Diğerinde açınca boş görünmesi normaldir.
+- Veriyi bir tarayıcıdan diğerine taşımak için:
+  1. Verilerin olduğu tarayıcıda "Yedek" sayfasından "Yedeği indir" de.
+  2. Diğer tarayıcıda uygulamayı aç, "Yedek" sayfasından indirdiğin dosyayı yükle.
+  İki tarayıcıda aynı anda veri girersen birleşmez; sonuncu yüklediğin geçerli olur.
+
+ESKİ SÜRÜMDEN GEÇİŞ (Aşama 1 veya 2'yi kullandıysan)
+- ÖNCE eski uygulamada "Yedek" sayfasından yedek indir.
+- Yeni klasörü aynı yere ayıklayıp aynı tarayıcıyla aç. Veriler kendiliğinden gelir;
+  gelmezse "Yedek" sayfasından indirdiğin dosyayı yükle.
+- Aşama 1 verisi yüklenirken, dokunmadığın AYT sosyal dersleri listeden kaldırılır.
+
+İLK KONTROL (1 dakika)
+- Bugün ekranından bir görev ekle.
+- Tarayıcıyı tamamen kapat, aynı bat dosyasıyla yeniden aç.
+- Görev duruyorsa her şey yolunda. Durmuyorsa bana yaz.
+
+BÖLÜMLER
+- Bugün: günün görevleri, planlanan süre, günlük çalışma hedefi, geciken görevler, tekrarı gelen
+  konular, dünün odak notu, YKS'ye kalan gün.
+- Plan: rutinindeki boş saatlere görevlerini (önceliğe göre) ve önerilen konuları yerleştirir.
+  Önce önizlersin, "Programı uygula" dersen görevlere saat verilir ve önerilen konular göreve eklenir.
+  Geciken görevleri önümüzdeki 7 günün boş saatlerine yeniden dağıtır.
+- Görevler: tarih, saat, süre ve öncelikle görev ekle. Saatleri çakışan görevler işaretlenir.
+- Dersler ve konular: durum, seviye (1-5), tekrar tarihi. Bitti dediğin konu için tekrar ertesi gün gelir;
+  "Tekrar ettim" dedikçe aralık 3, 7, 14, 30, 60 gün diye uzar.
+- Kaynaklar, Denemeler, Yanlış defteri, Hedefler: Aşama 2'deki gibi.
+- Rapor: gün sonu değerlendirmesi (puan, not, ertesi günün odağı) ve son 7 günün analizi.
+  Öneriler basit kurallarla üretilir (yapay zekâ değildir).
+- Koç: yapay zekâyla konuşarak program hazırlatırsın (ayrıntı aşağıda).
+- Rutin: çalışma saatlerin, meşgul saatlerin (okul, yemek, uyku), günlük hedef, mola ve konu bloğu süresi.
+  Plan'ın çalışması için en az bir çalışma penceresi tanımlamalısın ("Örnek rutin ekle" düğmesi var).
+- Yedek: yedek indir / geri yükle / otomatik günlük kopyalar / VERİLERİ SIFIRLA.
+
+VERİLERİ SIFIRLAMA
+- Yedek sayfasının en altındaki "Tüm verileri sıfırla" düğmesi her şeyi başlangıç haline döndürür.
+- Normalde sıfırlamadan sonra "Önceki verilere dön" ile geri alabilirsin.
+- "Otomatik kopyaları da sil" kutusunu işaretlersen geri dönüş olmaz.
+
+YAPAY ZEKÂ KOÇU (Koç sayfası)
+- Ne yapar: boş saatlerine, zayıf konularına, geciken görevlerine ve konuşmanda söylediklerine göre görev programı önerir.
+  Örnek: "Salı akşamı dershane uzayacak, o gün boş yok. Türeve ağırlık ver."
+- Yapay zekâ sadece ÖNERİR. Uygulama önerileri kontrol eder: çakışanları, geçmiş saatli olanları, geçersiz
+  değerli olanları kendisi eler ve nedenini yazar. Sen "Önerileri uygula" demeden hiçbir şey değişmez.
+  Uyguladıktan sonra beğenmezsen Yedek sayfasında "Önceki verilere dön" ile geri alırsın.
+- Bağlantı: "OpenAI uyumlu" bir adres. Bilgisayarında çalışan Ollama ile kullanman önerilir (ücretsiz,
+  hesap/anahtar gerekmez, veriler bilgisayarından çıkmaz).
+  Kurulum:
+  1. ollama.com adresinden Windows sürümünü indirip kur.
+  2. Komut İstemi'ni (cmd) açıp bir model indir: ollama pull MODEL_ADI
+     (Hangi modelin bilgisayarına uygun olduğunu bana sor; "ollama list" yüklü modellerin adını gösterir.)
+  3. Ollama arka planda çalışırken Koç sayfasında Bağlantı ayarları'na model adını yaz, adresi olduğu gibi
+     bırak (http://localhost:11434/v1), "Ayarları kaydet" ve "Bağlantıyı dene" de.
+  4. Plan çıktıları eksik/tutarsız gelirse: Ollama'nın bağlam uzunluğunu artır. Windows'ta "ortam değişkenleri"ni
+     ara, OLLAMA_CONTEXT_LENGTH adında 8192 değerli bir değişken ekle ve Ollama'yı yeniden başlat.
+- Küçük yerel modellerin Türkçesi ve düzeni büyük servislerden zayıf olabilir; saçma öneri gelirse zaten elenir
+  ya da önizlemede görürsün. Çok yavaş kalırsa daha küçük model dene veya plan gün sayısını azalt.
+- Başka bir servis kullanmak istersen adres, model adı ve anahtarı o servisin bilgileriyle gir. O durumda özet
+  verilerin (hedeflerin, boş saatlerin, zayıf konuların, görev başlıkların) o servise gönderilir. Servisin veri
+  kullanımına ve yaş/kullanım şartlarına bakmak sana düşer. Anahtarını kimseyle paylaşma.
+- Gizlilik: "Modele ne gönderiliyor?" bölümü gönderilecek özeti gösterir. Gün sonu notların varsayılan olarak
+  GÖNDERİLMEZ; istersen ayardan açarsın.
+- API anahtarı ve sohbet geçmişi bu tarayıcının içinde, yedek dosyasından AYRI saklanır; yedek dosyasına girmez.
+  Anahtar şifrelenmez; bilgisayarı başkası kullanıyorsa anahtar kullanma. "Ayarları ve anahtarı sil" düğmesi
+  hepsini kaldırır. "Tüm verileri sıfırla" yapay zekâ ayarlarını silmez.
+- API'siz mod: "Elle kopyala-yapıştır modu" ile istemi kopyalayıp istediğin bir yapay zekâ sohbetine
+  yapıştırırsın, verdiği JSON yanıtı geri yapıştırırsın. Aynı kontrol ve önizleme uygulanır. Kullandığın
+  servisin yaş ve kullanım şartlarına uy.
+
+ÖNEMLİ KURALLAR
+- Uygulamayı hep aynı tarayıcıyla aç (yukarıya bak).
+- Tarayıcıda geçmişi temizlerken "Çerezler ve diğer site verileri" kutusunu işaretleme.
+  İşaretlersen uygulama verilerin silinir.
+- Haftada bir "Yedek" sayfasından yedek indir ve bir kopyasını USB belleğe
+  veya bulut klasörüne (OneDrive vb.) at.
+- Uygulamayı tek pencerede kullan.
+
+KLASÖRDEKİ DOSYALAR
+- BASLAT.bat          : Uygulamayı Edge ile açar.
+- BASLAT-CHROME.bat   : Uygulamayı Chrome ile açar.
+- index.html          : Uygulamanın ana sayfası.
+- stil.css            : Görünüm (koyu tema).
+- depo.js             : Veri saklama, yedekleme ve veri işlemleri.
+- analiz.js           : Net hesabı, deneme analizi, hata istatistikleri.
+- planlayici.js       : Boş zaman hesabı, konu önceliği, günlük program, yeniden planlama.
+- rapor.js            : Gün sonu raporu, haftalık analiz, öneriler.
+- yz.js               : Yapay zekâ çekirdeği (bağlam, doğrulama, uygulama, API bağlantısı).
+- grafik.js           : Grafikler.
+- uygulama.js         : Bugün, Görevler, Dersler, Yedek ekranları.
+- ekranlar-yks.js     : Kaynaklar, Denemeler, Yanlış defteri, Hedefler ekranları.
+- ekranlar-plan.js    : Plan, Rapor, Rutin ekranları.
+- ekranlar-yz.js      : Koç ekranı.
+- baslat.js           : Uygulamayı başlatır.
+- testler/            : Geliştirme testleri. Senin kullanmana gerek yok, dokunma.

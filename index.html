@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="Kişisel YKS hazırlık, haftalık planlama, deneme analizi ve akıllı koçluk uygulaması.">
+  <title>YKS Koçu</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="simge.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="simge.svg">
+  <link rel="stylesheet" href="stil.css">
+</head>
+<body>
+  <div class="uygulama">
+    <nav class="yan-menu" aria-label="Ana menü">
+      <div class="marka">YKS Koçu</div>
+      <ul>
+        <li><button type="button" class="menu-dugme" data-gorunum="bugun">Bugün</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="planlama">Planlama</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="koc">Koç</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="gorevler">Görevler</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="dersler">Dersler ve konular</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="kaynaklar">Kaynaklar</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="denemeler">Denemeler</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="hatalar">Yanlış defteri</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="gelisim">Gelişim & Rapor</button></li>
+        <li><button type="button" class="menu-dugme" data-gorunum="yedek">Yedek</button></li>
+      </ul>
+      <div class="kayit-durumu" id="kayit-durumu" role="status"></div>
+    </nav>
+    <main class="ana">
+      <div id="uyari-alani"></div>
+      <div id="icerik"></div>
+      <noscript>Bu uygulama JavaScript gerektirir. Tarayıcında JavaScript kapalı görünüyor.</noscript>
+    </main>
+  </div>
+
+  <dialog id="duzenle-penceresi" aria-labelledby="duzenle-baslik-etiketi">
+    <form id="duzenle-formu" class="duzenle-formu">
+      <h2 id="duzenle-baslik-etiketi">Görevi düzenle</h2>
+      <label>Başlık
+        <input type="text" id="duzenle-baslik" maxlength="200">
+      </label>
+      <label>Tarih
+        <input type="date" id="duzenle-tarih">
+      </label>
+      <div class="iki-alan">
+        <label>Başlangıç saati
+          <input type="time" id="duzenle-saat">
+        </label>
+        <label>Süre (dakika)
+          <input type="number" id="duzenle-sure" min="0" max="1440" step="1" inputmode="numeric">
+        </label>
+      </div>
+      <div class="iki-alan">
+        <label>Ders
+          <select id="duzenle-ders"></select>
+        </label>
+        <label>Öncelik
+          <select id="duzenle-oncelik">
+            <option value="3">Yüksek</option>
+            <option value="2">Normal</option>
+            <option value="1">Düşük</option>
+          </select>
+        </label>
+      </div>
+      <label>Not
+        <textarea id="duzenle-notlar" rows="3"></textarea>
+      </label>
+      <p id="duzenle-hata" class="form-hata" role="alert"></p>
+      <div class="pencere-dugmeleri">
+        <button type="button" class="ikincil" id="duzenle-iptal">Vazgeç</button>
+        <button type="submit" class="birincil">Kaydet</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Mobil Alt Menü (Bottom Navigation Bar) -->
+  <nav class="mobil-alt-menu" aria-label="Mobil gezinti">
+    <button type="button" class="mobil-nav-dugme menu-dugme" data-gorunum="bugun" aria-label="Bugün">
+      <span class="nav-simge">🏠</span>
+      <span class="nav-yazi">Bugün</span>
+    </button>
+    <button type="button" class="mobil-nav-dugme menu-dugme" data-gorunum="planlama" aria-label="Planlama">
+      <span class="nav-simge">📅</span>
+      <span class="nav-yazi">Planlama</span>
+    </button>
+    <button type="button" class="mobil-nav-dugme menu-dugme" data-gorunum="koc" aria-label="AI Koç">
+      <span class="nav-simge">🤖</span>
+      <span class="nav-yazi">Koç</span>
+    </button>
+    <button type="button" class="mobil-nav-dugme menu-dugme" data-gorunum="hatalar" aria-label="Yanlış Defteri">
+      <span class="nav-simge">📝</span>
+      <span class="nav-yazi">Yanlışlar</span>
+    </button>
+    <button type="button" class="mobil-nav-dugme" id="mobil-menu-tetikleyici" aria-label="Daha fazla bölüm">
+      <span class="nav-simge">☰</span>
+      <span class="nav-yazi">Diğer</span>
+    </button>
+  </nav>
+
+  <!-- Mobil Çekmece (Daha Fazla Menüsü) -->
+  <div id="mobil-cekmece" class="mobil-cekmece" aria-hidden="true">
+    <div class="cekmece-arkaplan" id="cekmece-kapat"></div>
+    <div class="cekmece-icerik">
+      <div class="cekmece-baslik">
+        <h3>Tüm Bölümler</h3>
+        <button type="button" class="metin-dugme" id="cekmece-kapat-dugme" aria-label="Kapat">✕</button>
+      </div>
+      <ul class="cekmece-liste">
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="gorevler">📌 Görevler</button></li>
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="dersler">📚 Dersler ve Konular</button></li>
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="denemeler">📈 Denemeler & Netler</button></li>
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="kaynaklar">📖 Kaynaklarım</button></li>
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="gelisim">🎯 Gelişim & Rapor</button></li>
+        <li><button type="button" class="menu-dugme cekmece-oge" data-gorunum="yedek">💾 Veri & Yedek</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="depo.js"></script>
+  <script src="analiz.js"></script>
+  <script src="planlayici.js"></script>
+  <script src="rapor.js"></script>
+  <script src="yz.js"></script>
+  <script src="grafik.js"></script>
+  <script src="uygulama.js"></script>
+  <script src="ekranlar-yks.js"></script>
+  <script src="ekranlar-plan.js"></script>
+  <script src="ekranlar-yz.js"></script>
+  <script src="baslat.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js').catch(function () {});
+      });
+    }
+    // Mobil çekmece kontrolü
+    (function () {
+      var tetikleyici = document.getElementById('mobil-menu-tetikleyici');
+      var cekmece = document.getElementById('mobil-cekmece');
+      var kapatArka = document.getElementById('cekmece-kapat');
+      var kapatDugme = document.getElementById('cekmece-kapat-dugme');
+      function ac() { cekmece.classList.add('acik'); cekmece.setAttribute('aria-hidden', 'false'); }
+      function kapat() { cekmece.classList.remove('acik'); cekmece.setAttribute('aria-hidden', 'true'); }
+      if (tetikleyici) { tetikleyici.addEventListener('click', ac); }
+      if (kapatArka) { kapatArka.addEventListener('click', kapat); }
+      if (kapatDugme) { kapatDugme.addEventListener('click', kapat); }
+      document.querySelectorAll('.cekmece-oge').forEach(function (btn) {
+        btn.addEventListener('click', kapat);
+      });
+    })();
+  </script>
+</body>
+</html>

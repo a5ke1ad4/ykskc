@@ -1,0 +1,19 @@
+{
+  "name": "YKS Koçu — Kişisel Çalışma Koçu",
+  "short_name": "YKS Koçu",
+  "description": "Kişisel YKS hazırlık, haftalık planlama, deneme analizi ve akıllı koçluk uygulaması.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "simge.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
